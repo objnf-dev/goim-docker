@@ -8,7 +8,7 @@ RUN yum install -y bash git go wget tar make gcc g++ linux-headers java-1.7.0-op
 	git clone https://github.com/Terry-Mao/goim.git && \
 	cd /root/soft && \
 	wget http://www-us.apache.org/dist/kafka/1.0.0/kafka_$kafka_ver-1.0.0.tgz && \
-	tar -xzf kafka_$kafka_ver-1.0.0.tgz
+	tar -xzf kafka_$kafka_ver-1.0.0.tgz && \
 	cd /root/src/goim && \
 	go get -u github.com/Terry-Mao/goim && \
 	mkdir /root/go/src/golang.org && \
