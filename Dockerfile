@@ -1,50 +1,56 @@
-FROM centos:latest
-ENV kafka_ver=2.12
-RUN yum install -y bash git go wget tar make gcc g++ linux-headers java-1.7.0-openjdk && \
+FROM alpine:latest
+ENV zoo_ver=3.4.11
+RUN apk add --no-cache bash && \
+    apk add --no-cache git go wget tar make gcc g++ linux-headers && \
 	cd /root && \
 	mkdir src && \
 	mkdir soft && \
 	cd src && \
-	git clone https://github.com/Terry-Mao/goim.git && \
+	git clone https://github.com/Terry-Mao/gopush-cluster.git && \
 	cd /root/soft && \
-	wget http://www-us.apache.org/dist/kafka/1.0.0/kafka_$kafka_ver-1.0.0.tgz && \
-	tar -xzf kafka_$kafka_ver-1.0.0.tgz && \
-	cd /root/src/goim && \
-	go get -u github.com/Terry-Mao/goim && \
+	wget http://www-us.apache.org/dist/zookeeper/zookeeper-$zoo_ver/zookeeper-$zoo_ver.tar.gz && \
+	tar -xzf zookeeper-$zoo_ver.tar.gz -C ./ && \
+	\cp -rf /root/soft/zookeeper-$zoo_ver/conf/zoo_sample.cfg /root/soft/zookeeper-$zoo_ver/conf/zoo.cfg && \
+	rm -rf zookeeper-$zoo_ver.tar.gz && \
+	wget http://download.redis.io/releases/redis-stable.tar.gz && \
+	tar -xzf redis-stable.tar.gz && \
+	cd redis-stable && \
+	make -j4 && \
+	find . -name '*.c' -type f -exec rm -rf {} \; && \
+	find . -name '*.o' -type f -exec rm -rf {} \; && \
+	find . -name '*.h' -type f -exec rm -rf {} \; && \
+	find . -name '*.cpp' -type f -exec rm -rf {} \; && \
+	find . -name '*.hpp' -type f -exec rm -rf {} \; && \
+	find . -type d -depth -exec rmdir -p 2>&1 \; && \
+	cd /root/src/gopush-cluster && \
+	./dependencies.sh && \
 	mkdir /root/go/src/golang.org && \
     mkdir /root/go/src/golang.org/x && \
     cd /root/go/src/golang.org/x && \
     git clone https://github.com/golang/net.git && \
-	cd /root/go/src/github.com/Terry-Mao/goim/router && \
+	cd /root/go/src/github.com/Terry-Mao/gopush-cluster/message && \
 	go build && \
-	mkdir /root/soft/router && \
+	mkdir /root/soft/message && \
 	mkdir /root/config && \
-	\cp -rf router /root/soft/router/ && \
-	\cp -rf router-example.conf /root/config/router.conf && \
-	ln -s /root/config/router.conf /root/soft/router/router.conf && \
-	\cp -rf router_log.xml /root/soft/router/router_log.xml && \
-	cd /root/go/src/github.com/Terry-Mao/goim/comet && \
+	\cp -rf message /root/soft/message/ && \
+	\cp -rf message-example.conf /root/config/message.conf && \
+	ln -s /root/config/message.conf /root/soft/message/message.conf && \
+	\cp -rf log.xml /root/soft/message/message_log.xml && \
+	cd /root/go/src/github.com/Terry-Mao/gopush-cluster/comet && \
 	go build && \
 	mkdir /root/soft/comet && \
 	\cp -rf comet /root/soft/comet/ && \
 	\cp -rf comet-example.conf /root/config/comet.conf && \
 	ln -s /root/config/comet.conf /root/soft/comet/comet.conf && \
-	\cp -rf comet_log.xml /root/soft/comet/comet_log.xml && \
-	cd /root/go/src/github.com/Terry-Mao/goim/logic/job && \
+	\cp -rf log.xml /root/soft/comet/comet_log.xml && \
+	cd /root/go/src/github.com/Terry-Mao/gopush-cluster/web && \
 	go build && \
-	mkdir /root/soft/job && \
-	\cp -rf job /root/soft/job/ && \
-	\cp -rf job-example.conf /root/config/job.conf && \
-	ln -s /root/config/job.conf /root/soft/job/job.conf && \
-	\cp -rf job_log.xml /root/soft/job/job_log.xml && \
-	cd /root/go/src/github.com/Terry-Mao/goim/logic && \
-	go build && \
-	mkdir /root/soft/logic && \
-	\cp -rf logic /root/soft/logic/ && \
-	\cp -rf logic-example.conf /root/config/logic.conf && \
-	ln -s /root/config/logic.conf /root/soft/job/logic.conf && \
-	\cp -rf logic_log.xml /root/soft/job/logic_log.xml && \
-	yum autoremove -y git go wget tar make gcc g++ kernel-headers && \
+	mkdir /root/soft/web && \
+	\cp -rf web /root/soft/web/ && \
+	\cp -rf web-example.conf /root/config/web.conf && \
+	ln -s /root/config/web.conf /root/soft/web/web.conf && \
+	\cp -rf log.xml /root/soft/web/web_log.xml && \
+	apk del git go wget tar make gcc g++ linux-headers && \
 	rm -rf /root/src && \
 	rm -rf /root/go && \
 	mkdir /root/shell && \
