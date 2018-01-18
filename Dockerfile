@@ -1,7 +1,8 @@
-FROM alpine:latest
+FROM centos:latest
 ENV zoo_ver=3.4.11
-RUN apk add --no-cache bash && \
-    apk add --no-cache git go wget tar make gcc g++ linux-headers && \
+RUN yum install -y bash && \
+    yum install -y git go wget tar make gcc gcc-c++ && \
+	yum clean all && \
 	cd /root && \
 	mkdir src && \
 	mkdir soft && \
@@ -16,12 +17,13 @@ RUN apk add --no-cache bash && \
 	tar -xzf redis-stable.tar.gz && \
 	cd redis-stable && \
 	make -j4 && \
+	make test && \
 	find . -name '*.c' -type f -exec rm -rf {} \; && \
 	find . -name '*.o' -type f -exec rm -rf {} \; && \
 	find . -name '*.h' -type f -exec rm -rf {} \; && \
 	find . -name '*.cpp' -type f -exec rm -rf {} \; && \
 	find . -name '*.hpp' -type f -exec rm -rf {} \; && \
-	find . -type d -depth -exec rmdir -p 2>&1 \; && \
+	find . -type d -empty -delete && \
 	cd /root/src/gopush-cluster && \
 	./dependencies.sh && \
 	mkdir /root/go/src/golang.org && \
@@ -50,7 +52,7 @@ RUN apk add --no-cache bash && \
 	\cp -rf web-example.conf /root/config/web.conf && \
 	ln -s /root/config/web.conf /root/soft/web/web.conf && \
 	\cp -rf log.xml /root/soft/web/web_log.xml && \
-	apk del git go wget tar make gcc g++ linux-headers && \
+	yum autoremove git go wget tar make gcc gcc-c++ kernel-headers && \
 	rm -rf /root/src && \
 	rm -rf /root/go && \
 	mkdir /root/shell && \
