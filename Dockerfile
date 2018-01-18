@@ -17,7 +17,6 @@ RUN yum install -y bash && \
 	tar -xzf redis-stable.tar.gz && \
 	cd redis-stable && \
 	make -j4 && \
-	make test && \
 	find . -name '*.c' -type f -exec rm -rf {} \; && \
 	find . -name '*.o' -type f -exec rm -rf {} \; && \
 	find . -name '*.h' -type f -exec rm -rf {} \; && \
