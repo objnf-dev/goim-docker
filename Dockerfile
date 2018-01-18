@@ -14,6 +14,7 @@ RUN yum update -y && \
 	cd /root/src && \
 	go get -u github.com/thinkboy/log4go && \
 	go get -u github.com/Terry-Mao/goconf && \
+	go get -u github.com/gorilla/websocket && \
 	\cp -rf goim /root/go/src/ && \
 	mkdir /root/go/src/golang.org && \
     mkdir /root/go/src/golang.org/x && \
