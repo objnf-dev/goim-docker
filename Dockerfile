@@ -1,6 +1,8 @@
 FROM centos:latest
 ENV kafka_ver=2.12
-RUN yum install -y bash git go wget tar make gcc g++ linux-headers java-1.7.0-openjdk && \
+RUN yum update -y && \
+    yum install -y bash git go wget java-1.7.0-openjdk && \
+    yum clean all && \
 	cd /root && \
 	mkdir src && \
 	mkdir soft && \
@@ -10,7 +12,7 @@ RUN yum install -y bash git go wget tar make gcc g++ linux-headers java-1.7.0-op
 	wget http://www-us.apache.org/dist/kafka/1.0.0/kafka_$kafka_ver-1.0.0.tgz && \
 	tar -xzf kafka_$kafka_ver-1.0.0.tgz && \
 	cd /root/src/goim && \
-	go get -u github.com/Terry-Mao/goim 2&>1 && \
+	go get -u github.com/Terry-Mao/goim 2>&1 && \
 	mkdir /root/go/src/golang.org && \
     mkdir /root/go/src/golang.org/x && \
     cd /root/go/src/golang.org/x && \
@@ -44,7 +46,7 @@ RUN yum install -y bash git go wget tar make gcc g++ linux-headers java-1.7.0-op
 	\cp -rf logic-example.conf /root/config/logic.conf && \
 	ln -s /root/config/logic.conf /root/soft/job/logic.conf && \
 	\cp -rf logic_log.xml /root/soft/job/logic_log.xml && \
-	yum autoremove -y git go wget tar make gcc g++ kernel-headers && \
+	yum autoremove -y git go wget && \
 	rm -rf /root/src && \
 	rm -rf /root/go && \
 	mkdir /root/shell && \
