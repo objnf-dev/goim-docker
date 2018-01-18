@@ -12,11 +12,9 @@ RUN yum update -y && \
 	wget http://www-us.apache.org/dist/kafka/1.0.0/kafka_$kafka_ver-1.0.0.tgz && \
 	tar -xzf kafka_$kafka_ver-1.0.0.tgz && \
 	cd /root/src && \
-	mkdir /root/go && \
-	mkdir /root/go/src && \
-	mkdir /root/go/src/github.com && \
-	mkdir /root/go/src/github.com/Terry-Mao && \
-	\cp -rf goim /root/go/src/github.com/Terry-Mao/ && \
+	go get -u github.com/thinkboy/log4go && \
+	go get -u github.com/Terry-Mao/goconf && \
+	\cp -rf goim /root/go/src/ && \
 	mkdir /root/go/src/golang.org && \
     mkdir /root/go/src/golang.org/x && \
     cd /root/go/src/golang.org/x && \
