@@ -1,7 +1,7 @@
 FROM centos:latest
 ENV zoo_ver=3.4.11
 RUN yum install -y bash && \
-    yum install -y git go wget tar make gcc gcc-c++ && \
+    yum install -y git go wget make gcc && \
 	yum clean all && \
 	cd /root && \
 	mkdir src && \
@@ -20,8 +20,6 @@ RUN yum install -y bash && \
 	find . -name '*.c' -type f -exec rm -rf {} \; && \
 	find . -name '*.o' -type f -exec rm -rf {} \; && \
 	find . -name '*.h' -type f -exec rm -rf {} \; && \
-	find . -name '*.cpp' -type f -exec rm -rf {} \; && \
-	find . -name '*.hpp' -type f -exec rm -rf {} \; && \
 	find . -type d -empty -delete && \
 	cd /root/src/gopush-cluster && \
 	./dependencies.sh && \
@@ -51,7 +49,7 @@ RUN yum install -y bash && \
 	\cp -rf web-example.conf /root/config/web.conf && \
 	ln -s /root/config/web.conf /root/soft/web/web.conf && \
 	\cp -rf log.xml /root/soft/web/web_log.xml && \
-	yum autoremove -y git go wget tar make gcc gcc-c++ kernel-headers && \
+	yum autoremove -y git go wget make gcc kernel-headers && \
 	rm -rf /root/src && \
 	rm -rf /root/go && \
 	mkdir /root/shell && \
