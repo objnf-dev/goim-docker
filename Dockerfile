@@ -51,7 +51,7 @@ RUN yum install -y bash && \
 	\cp -rf web-example.conf /root/config/web.conf && \
 	ln -s /root/config/web.conf /root/soft/web/web.conf && \
 	\cp -rf log.xml /root/soft/web/web_log.xml && \
-	yum autoremove git go wget tar make gcc gcc-c++ kernel-headers && \
+	yum autoremove -y git go wget tar make gcc gcc-c++ kernel-headers && \
 	rm -rf /root/src && \
 	rm -rf /root/go && \
 	mkdir /root/shell && \
