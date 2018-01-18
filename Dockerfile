@@ -27,28 +27,28 @@ RUN yum update -y && \
 	\cp -rf router /root/soft/router/ && \
 	\cp -rf router-example.conf /root/config/router.conf && \
 	ln -s /root/config/router.conf /root/soft/router/router.conf && \
-	\cp -rf router_log.xml /root/soft/router/router_log.xml && \
+	\cp -rf router-log.xml /root/soft/router/router-log.xml && \
 	cd /root/go/src/goim/comet && \
 	go build && \
 	mkdir /root/soft/comet && \
 	\cp -rf comet /root/soft/comet/ && \
 	\cp -rf comet-example.conf /root/config/comet.conf && \
 	ln -s /root/config/comet.conf /root/soft/comet/comet.conf && \
-	\cp -rf comet_log.xml /root/soft/comet/comet_log.xml && \
+	\cp -rf comet-log.xml /root/soft/comet/comet-log.xml && \
 	cd /root/go/src/goim/logic/job && \
 	go build && \
 	mkdir /root/soft/job && \
 	\cp -rf job /root/soft/job/ && \
 	\cp -rf job-example.conf /root/config/job.conf && \
 	ln -s /root/config/job.conf /root/soft/job/job.conf && \
-	\cp -rf job_log.xml /root/soft/job/job_log.xml && \
+	\cp -rf job-log.xml /root/soft/job/job-log.xml && \
 	cd /root/go/src/goim/logic && \
 	go build && \
 	mkdir /root/soft/logic && \
 	\cp -rf logic /root/soft/logic/ && \
 	\cp -rf logic-example.conf /root/config/logic.conf && \
 	ln -s /root/config/logic.conf /root/soft/job/logic.conf && \
-	\cp -rf logic_log.xml /root/soft/job/logic_log.xml && \
+	\cp -rf logic-log.xml /root/soft/job/logic-log.xml && \
 	yum autoremove -y git go wget && \
 	rm -rf /root/src && \
 	rm -rf /root/go && \
