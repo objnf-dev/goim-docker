@@ -63,4 +63,21 @@ RUN yum update -y && \
     rm -rf /root/go && \
     mkdir /root/shell && \
     mkdir /root/logs
+VOLUME ["/root/logs","/root/config"]
+EXPOSE 1999
+EXPOSE 2181
+EXPOSE 6971
+EXPOSE 6972
+EXPOSE 7170
+EXPOSE 7171
+EXPOSE 7172
+EXPOSE 7270
+EXPOSE 7271
+EXPOSE 7371
+EXPOSE 7372
+EXPOSE 7373
+EXPOSE 7374
+EXPOSE 8080
+EXPOSE 8090
+EXPOSE 8092
 CMD /bin/bash -c "while true;do sleep 1;done"
