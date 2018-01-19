@@ -65,7 +65,8 @@ RUN yum update -y && \
     mkdir /root/shell && \
     mkdir /root/logs
 ADD shell /root/shell
-RUN ln -s /root/shell/start.sh /root/start.sh
+RUN chmod -R 777 /root/shell && \
+    ln -s /root/shell/start.sh /root/start.sh
 VOLUME ["/root/logs","/root/config"]
 EXPOSE 1999
 EXPOSE 2181
