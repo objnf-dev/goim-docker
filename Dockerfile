@@ -64,6 +64,8 @@ RUN yum update -y && \
     rm -rf /root/go && \
     mkdir /root/shell && \
     mkdir /root/logs
+ADD shell /root/shell
+RUN ln -s /root/shell/start.sh /root/start.sh
 VOLUME ["/root/logs","/root/config"]
 EXPOSE 1999
 EXPOSE 2181
@@ -81,4 +83,4 @@ EXPOSE 7374
 EXPOSE 8080
 EXPOSE 8090
 EXPOSE 8092
-CMD /bin/bash -c "while true;do sleep 1;done"
+CMD /bin/bash -c /root/start.sh
