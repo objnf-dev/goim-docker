@@ -11,6 +11,7 @@ RUN yum update -y && \
     cd /root/soft && \
     wget http://www-us.apache.org/dist/kafka/1.0.0/kafka_$kafka_ver-1.0.0.tgz && \
     tar -xzf kafka_$kafka_ver-1.0.0.tgz && \
+	rm -rf kafka_$kafka_ver-1.0.0.tgz && \
     cd /root/src && \
     go get -u github.com/thinkboy/log4go && \
     go get -u github.com/Terry-Mao/goconf && \
