@@ -16,16 +16,14 @@ RUN yum update -y && \
     go get -u github.com/Terry-Mao/goconf && \
     go get -u github.com/gorilla/websocket && \
     go get -u github.com/Shopify/sarama && \
+	go get -u github.com/wvanbergen/kazoo-go && \
     \cp -rf goim /root/go/src/ && \
     mkdir /root/go/src/golang.org && \
     mkdir /root/go/src/golang.org/x && \
     cd /root/go/src/golang.org/x && \
     git clone https://github.com/golang/net.git && \
-	cd /root/go/src/github.com && \
-	mkdir wvanbergen && \
-	cd wvanbergen && \
+	cd /root/go/src/github.com/wvanbergen && \
 	git clone https://github.com/wvanbergen/kafka.git && \
-	go get -u github.com/wvanbergen/kazoo-go && \
     cd /root/go/src/goim/router && \
     go build && \
     mkdir /root/soft/router && \
