@@ -1,7 +1,7 @@
 FROM centos:latest
 ENV kafka_ver=2.12
 RUN yum update -y && \
-    yum install -y bash git go wget hg java-1.7.0-openjdk && \
+    yum install -y bash git go wget java-1.7.0-openjdk && \
     yum clean all && \
     cd /root && \
     mkdir src && \
@@ -12,20 +12,18 @@ RUN yum update -y && \
     wget http://www-us.apache.org/dist/kafka/1.0.0/kafka_$kafka_ver-1.0.0.tgz && \
     tar -xzf kafka_$kafka_ver-1.0.0.tgz && \
     cd /root/src && \
-    #go get -u github.com/thinkboy/log4go && \
-    #go get -u github.com/Terry-Mao/goconf && \
-    #go get -u github.com/gorilla/websocket && \
-    #go get -u github.com/Shopify/sarama && \
-	#go get -u github.com/wvanbergen/kazoo-go && \
+    go get -u github.com/thinkboy/log4go && \
+    go get -u github.com/Terry-Mao/goconf && \
+    go get -u github.com/gorilla/websocket && \
+    go get -u github.com/Shopify/sarama && \
+    go get -u github.com/wvanbergen/kazoo-go && \
     \cp -rf goim /root/go/src/ && \
-	cd /root/go/src/goim && \
-	go get ./... && \
     mkdir /root/go/src/golang.org && \
     mkdir /root/go/src/golang.org/x && \
     cd /root/go/src/golang.org/x && \
     git clone https://github.com/golang/net.git && \
-	#cd /root/go/src/github.com/wvanbergen && \
-	#git clone https://github.com/wvanbergen/kafka.git && \
+    cd /root/go/src/github.com/wvanbergen && \
+    git clone https://github.com/wvanbergen/kafka.git && \
     cd /root/go/src/goim/router && \
     go build && \
     mkdir /root/soft/router && \
@@ -55,7 +53,12 @@ RUN yum update -y && \
     \cp -rf logic-example.conf /root/config/logic.conf && \
     ln -s /root/config/logic.conf /root/soft/job/logic.conf && \
     \cp -rf logic-log.xml /root/soft/job/logic-log.xml && \
-    yum autoremove -y git go wget hg && \
+    cd /root/go/src/goim && \
+    \cp -rf examples /root/examples && \
+    cd /root/examples/javascript && \
+    go build main.go && \
+    rm -rf main.go && \
+    yum autoremove -y git go wget && \
     rm -rf /root/src && \
     rm -rf /root/go && \
     mkdir /root/shell && \
