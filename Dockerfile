@@ -25,6 +25,7 @@ RUN yum update -y && \
 	mkdir wvanbergen && \
 	cd wvanbergen && \
 	git clone https://github.com/wvanbergen/kafka.git && \
+	go get -u github.com/wvanbergen/kazoo-go && \
     cd /root/go/src/goim/router && \
     go build && \
     mkdir /root/soft/router && \
