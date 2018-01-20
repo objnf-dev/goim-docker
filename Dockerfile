@@ -1,7 +1,7 @@
 FROM centos:latest
 ENV kafka_ver=2.12
 RUN yum update -y && \
-    yum install -y bash git go wget java-1.7.0-openjdk && \
+    yum install -y bash git go wget java-1.8.0-openjdk && \
     yum clean all && \
     cd /root && \
     mkdir src && \
@@ -52,7 +52,7 @@ RUN yum update -y && \
     mkdir /root/soft/logic && \
     \cp -rf logic /root/soft/logic/ && \
     \cp -rf logic-example.conf /root/config/logic.conf && \
-    ln -s /root/config/logic.conf /root/soft/job/logic.conf && \
+    ln -s /root/config/logic.conf /root/soft/logic/logic.conf && \
     \cp -rf logic-log.xml /root/soft/job/logic-log.xml && \
     cd /root/go/src/goim && \
     \cp -rf examples /root/examples && \
