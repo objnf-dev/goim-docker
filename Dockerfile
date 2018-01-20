@@ -11,7 +11,7 @@ RUN yum update -y && \
     cd /root/soft && \
     wget http://www-us.apache.org/dist/kafka/1.0.0/kafka_$kafka_ver-1.0.0.tgz && \
     tar -xzf kafka_$kafka_ver-1.0.0.tgz && \
-	rm -rf kafka_$kafka_ver-1.0.0.tgz && \
+    rm -rf kafka_$kafka_ver-1.0.0.tgz && \
     cd /root/src && \
     go get -u github.com/thinkboy/log4go && \
     go get -u github.com/Terry-Mao/goconf && \
@@ -54,11 +54,6 @@ RUN yum update -y && \
     \cp -rf logic-example.conf /root/config/logic.conf && \
     ln -s /root/config/logic.conf /root/soft/logic/logic.conf && \
     \cp -rf logic-log.xml /root/soft/logic/logic-log.xml && \
-    cd /root/go/src/goim && \
-    \cp -rf examples /root/examples && \
-    cd /root/examples/javascript && \
-    go build main.go && \
-    rm -rf main.go && \
     yum autoremove -y git go wget && \
     rm -rf /root/src && \
     rm -rf /root/go && \
@@ -66,7 +61,8 @@ RUN yum update -y && \
     mkdir /root/logs
 ADD shell /root/shell
 RUN chmod -R 777 /root/shell && \
-    ln -s /root/shell/start.sh /root/start.sh
+    ln -s /root/shell/start.sh /root/start.sh && \
+    ln -s /root/shell/stop.sh /root/stop.sh
 VOLUME ["/root/logs","/root/config"]
 EXPOSE 1999
 EXPOSE 2181

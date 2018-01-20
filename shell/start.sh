@@ -21,10 +21,6 @@ sleep 5
 echo "Starting job"
 cd /root/soft/job
 nohup ./job -c job.conf 2>&1 >> /root/logs/job.log &
-sleep 5
-echo "Starting demo"
-cd /root/examples/javascript
-nohup ./main 2>&1 >> /root/logs/demo.log &
 while true;
 do sleep 1;
 done;
