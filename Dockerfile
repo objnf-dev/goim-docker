@@ -64,7 +64,6 @@ RUN chmod -R 777 /root/shell && \
     ln -s /root/shell/start.sh /root/start.sh && \
     ln -s /root/shell/stop.sh /root/stop.sh
 VOLUME ["/root/logs","/root/config"]
-EXPOSE 1999
 EXPOSE 2181
 EXPOSE 6971
 EXPOSE 6972

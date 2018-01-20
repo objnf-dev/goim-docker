@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Start Zookeeper"
+echo "Starting Zookeeper"
 cd /root/soft/kafka_$kafka_ver-1.0.0/bin
 nohup ./zookeeper-server-start.sh ../config/zookeeper.properties 2>&1 >> /root/logs/zookeeper.log &
 sleep 5

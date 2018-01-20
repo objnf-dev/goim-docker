@@ -7,7 +7,7 @@ echo "Stoping logic"
 killall -9 logic
 echo "Stoping router"
 killall -9 router
-echo "Stoping Kafka"
+echo "Stoping Zookeeper and Kafka"
 killall -9 java
 echo "Done"
 exit
