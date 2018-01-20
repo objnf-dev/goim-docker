@@ -53,7 +53,7 @@ RUN yum update -y && \
     \cp -rf logic /root/soft/logic/ && \
     \cp -rf logic-example.conf /root/config/logic.conf && \
     ln -s /root/config/logic.conf /root/soft/logic/logic.conf && \
-    \cp -rf logic-log.xml /root/soft/job/logic-log.xml && \
+    \cp -rf logic-log.xml /root/soft/logic/logic-log.xml && \
     cd /root/go/src/goim && \
     \cp -rf examples /root/examples && \
     cd /root/examples/javascript && \
