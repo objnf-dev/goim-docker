@@ -18,6 +18,11 @@ echo "Starting comet"
 cd /root/soft/comet
 nohup ./comet -c comet.conf 2>&1 >> /root/logs/comet.log &
 sleep 5
+echo "Creating node"
+cd /root/soft/job
+nohup ./job -c job.conf 2>&1 >> /root/logs/job.log &
+sleep 5
+killall job
 echo "Starting job"
 cd /root/soft/job
 nohup ./job -c job.conf 2>&1 >> /root/logs/job.log &
