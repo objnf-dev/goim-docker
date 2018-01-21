@@ -22,7 +22,7 @@ RUN yum install -y git bash go && \
     \cp -rf router /root/ && \
     \cp -rf router-example.conf /root/config/router.conf && \
     \cp -rf router-log.xml /root/router-log.xml && \
-	yum autoremove go git && \
+	yum autoremove -y go git && \
 	rm -rf /root/go
 VOLUME ["/root/config","/root/logs"]
 EXPOSE 7270

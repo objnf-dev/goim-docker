@@ -1,5 +1,6 @@
-FROM alpine:latest
-RUN apk add --no-cache git bash go && \
+FROM centos:latest
+RUN yum install -y git bash go && \
+    yum clean all && \
     cd /root && \
 	mkdir /root/logs && \
 	go get -u github.com/thinkboy/log4go && \
@@ -21,7 +22,7 @@ RUN apk add --no-cache git bash go && \
     \cp -rf logic /root/ && \
     \cp -rf logic-example.conf /root/config/logic.conf && \
     \cp -rf logic-log.xml /root/logic-log.xml && \
-	apk del go git && \
+	yum autoremove -y go git && \
 	rm -rf /root/go
 VOLUME ["/root/config","/root/logs"]
 EXPOSE 7270
