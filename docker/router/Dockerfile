@@ -27,4 +27,4 @@ VOLUME ["/root/config","/root/logs"]
 EXPOSE 7270
 EXPOSE 7271
 EXPOSE 7374
-CMD /bin/bash -c "cd /root;./router -c ./config/router.conf 2>&1 >> /root/logs/router.log"
+CMD /bin/bash -c "sleep 5;cd /root;./router -c ./config/router.conf 2>&1 >> /root/logs/router.log"
