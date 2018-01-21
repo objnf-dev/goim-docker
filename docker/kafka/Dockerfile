@@ -1,6 +1,6 @@
 FROM centos:latest
 RUN yum install -y wget java-1.8.0-openjdk && \
-    yum clean all && \
+        yum clean all
 ENV kafka_ver=2.12
 RUN cd /root && \
     wget http://www-us.apache.org/dist/kafka/1.0.0/kafka_$kafka_ver-1.0.0.tgz && \
