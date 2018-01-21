@@ -1,6 +1,5 @@
-FROM centos:latest
-RUN yum install -y git bash go && \
-    yum clean all && \
+FROM alpine:latest
+RUN apk add --no-cache git bash go && \
     cd /root && \
 	mkdir /root/logs && \
 	go get -u github.com/thinkboy/log4go && \
@@ -16,16 +15,16 @@ RUN yum install -y git bash go && \
     git clone https://github.com/golang/net.git && \
     cd /root/go/src/github.com/wvanbergen && \
     git clone https://github.com/wvanbergen/kafka.git && \
-	cd /root/go/src/goim/router && \
+	cd /root/go/src/goim/logic/job && \
     go build && \
     mkdir /root/config && \
-    \cp -rf router /root/ && \
-    \cp -rf router-example.conf /root/config/router.conf && \
-    \cp -rf router-log.xml /root/router-log.xml && \
-	yum autoremove go git && \
+    \cp -rf job /root/ && \
+    \cp -rf job-example.conf /root/config/job.conf && \
+    \cp -rf job-log.xml /root/job-log.xml && \
+	apk del go git && \
 	rm -rf /root/go
 VOLUME ["/root/config","/root/logs"]
 EXPOSE 7270
 EXPOSE 7271
 EXPOSE 7374
-CMD /bin/bash -c "sleep 5;cd /root;./router -c ./config/router.conf 2>&1 >> /root/logs/router.log"
+CMD /bin/bash -c "sleep 5;cd /root;./job -c ./config/job.conf 2>&1 >> /root/logs/job.log"

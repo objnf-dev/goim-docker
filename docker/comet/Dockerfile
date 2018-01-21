@@ -16,16 +16,16 @@ RUN yum install -y git bash go && \
     git clone https://github.com/golang/net.git && \
     cd /root/go/src/github.com/wvanbergen && \
     git clone https://github.com/wvanbergen/kafka.git && \
-	cd /root/go/src/goim/router && \
+	cd /root/go/src/goim/comet && \
     go build && \
     mkdir /root/config && \
-    \cp -rf router /root/ && \
-    \cp -rf router-example.conf /root/config/router.conf && \
-    \cp -rf router-log.xml /root/router-log.xml && \
+    \cp -rf comet /root/ && \
+    \cp -rf comet-example.conf /root/config/comet.conf && \
+    \cp -rf comet-log.xml /root/comet-log.xml && \
 	yum autoremove go git && \
 	rm -rf /root/go
 VOLUME ["/root/config","/root/logs"]
 EXPOSE 7270
 EXPOSE 7271
 EXPOSE 7374
-CMD /bin/bash -c "sleep 5;cd /root;./router -c ./config/router.conf 2>&1 >> /root/logs/router.log"
+CMD /bin/bash -c "sleep 5;cd /root;./comet -c ./config/comet.conf 2>&1 >> /root/logs/comet.log"
