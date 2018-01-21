@@ -1,0 +1,15 @@
+kafka:
+    image:zhouweitong/goim-docker:kafka
+    ports:
+        - 2181:2181
+        - 9092:9092
+router:
+    images:zhouweitong/goim-docker:router
+    ports:
+        - 7270:7270
+        - 7271:7271
+        - 7374:7374
+    volumes:
+        - /tmp/goim/router/config:/root/config
+        - /tmp/goim/router/logs:/root/logs
+        
