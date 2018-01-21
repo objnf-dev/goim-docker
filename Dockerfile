@@ -1,7 +1,7 @@
 FROM centos:latest
 ENV kafka_ver=2.12
 RUN yum update -y && \
-    yum install -y bash psmisc git go wget java-1.8.0-openjdk && \
+    yum install -y bash sudo psmisc git go wget java-1.8.0-openjdk && \
     yum clean all && \
     cd /root && \
     mkdir src && \
