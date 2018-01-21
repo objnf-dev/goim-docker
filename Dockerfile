@@ -62,6 +62,7 @@ RUN yum update -y && \
 ADD shell /root/shell
 RUN chmod -R 777 /root/shell && \
     ln -s /root/shell/start.sh /root/start.sh && \
+    ln -s /root/shell/start_job.sh /root/start_job.sh && \
     ln -s /root/shell/stop.sh /root/stop.sh
 VOLUME ["/root/logs","/root/config"]
 EXPOSE 2181

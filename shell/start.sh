@@ -18,9 +18,12 @@ echo "Starting comet"
 cd /root/soft/comet
 nohup ./comet -c comet.conf 2>&1 >> /root/logs/comet.log &
 sleep 5
-echo "Starting job"
+echo "Creating Nodes"
 cd /root/soft/job
 nohup sudo /bin/bash -c "./job -c job.conf 2>&1 >> /root/logs/job.log &"
+sleep 5
+killall -9 job
+echo "All Done.Now you can run \" nohup /root/start_job.sh & \" manually in your container."
 while true;
 do sleep 1;
 done;
