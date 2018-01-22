@@ -1,5 +1,5 @@
 goim:
-    image:zhouweitong/goim-docker
+    image:zhouweitong/goim-docker:goim
     ports:
         - 2181:2181
         - 6971:6971
