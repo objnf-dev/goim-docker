@@ -6,6 +6,8 @@ sleep 5
 echo "Starting Kafka"
 nohup ./kafka-server-start.sh ../config/server.properties 2>&1 >> /root/logs/kafka.log &
 sleep 5
+echo "Creating Topic"
+./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 24 --topic KafkaPushsTopic
 cd /root/soft/router
 echo "Starting router"
 nohup ./router -c router.conf 2>&1 >> /root/logs/router.log &
@@ -18,12 +20,12 @@ echo "Starting comet"
 cd /root/soft/comet
 nohup ./comet -c comet.conf 2>&1 >> /root/logs/comet.log &
 sleep 5
-echo "Creating Nodes"
+echo "Starting job"
 cd /root/soft/job
-nohup sudo /bin/bash -c "./job -c job.conf 2>&1 >> /root/logs/job.log &"
+nohup sudo ./job -c job.conf 2>&1 >> /root/logs/job.log &
 sleep 5
-killall -9 job
-echo "All Done.Now you can run \" nohup /root/start_job.sh & \" manually in your container."
+# killall -9 job
+# echo "All Done.Now you can run \" nohup /root/start_job.sh & \" manually in your container."
 while true;
 do sleep 1;
 done;
