@@ -54,25 +54,31 @@ RUN yum update -y && \
     \cp -rf logic-example.conf /root/config/logic.conf && \
     ln -s /root/config/logic.conf /root/soft/logic/logic.conf && \
     \cp -rf logic-log.xml /root/soft/logic/logic-log.xml && \
+	cd /root/go/src/goim/comet/client && \
+	go build && \
+	mkdir /root/soft/client && \
+	\cp -rf client /root/soft/client/ && \
+	\cp -rf client-example.conf /root/config/client.conf && \
+	\cp -rf log.xml /root/soft/logic/log.xml && \
 	cd /root/go/src/goim && \
 	\cp -rf examples /root/soft && \
 	\cp -rf benchmark /root/soft && \
 	cd /root/soft/examples/javascript && \
 	go build main.go && \
 	rm -rf main.go && \
-	cd /root/soft/benchmark\client && \
+	cd /root/soft/benchmark/client && \
 	go build main.go && \
 	rm -rf main.go && \
-	cd /root/soft/benchmark\multi_push && \
+	cd /root/soft/benchmark/multi_push && \
 	go build main.go && \
 	rm -rf main.go && \
-	cd /root/soft/benchmark\push && \
+	cd /root/soft/benchmark/push && \
 	go build main.go && \
 	rm -rf main.go && \
-	cd /root/soft/benchmark\push_room && \
+	cd /root/soft/benchmark/push_room && \
 	go build main.go && \
 	rm -rf main.go && \
-	cd /root/soft/benchmark\push_rooms && \
+	cd /root/soft/benchmark/push_rooms && \
 	go build main.go && \
 	rm -rf main.go && \
     yum autoremove -y git go wget && \
