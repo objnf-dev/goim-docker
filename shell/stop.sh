@@ -1,4 +1,6 @@
 #!/bin/sh
+echo "Stoping Proxy"
+killall -9 httpx-static
 echo "Stoping job"
 killall -9 job
 echo "Stoping comet"

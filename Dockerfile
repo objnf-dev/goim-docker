@@ -81,6 +81,12 @@ RUN yum update -y && \
 	cd /root/soft/benchmark/push_rooms && \
 	go build main.go && \
 	rm -rf main.go && \
+    cd /root/src && \
+    go get github.com/ossrs/go-oryx/httpx-static && \
+    cd /root/go/src/github.com/ossrs/go-oryx/httpx-static && \
+    go build && \
+    mkdir /root/soft/http-proxy && \
+    \cp -rf httpx-static /root/soft/http-proxy && \
     yum autoremove -y git go wget && \
     rm -rf /root/src && \
     rm -rf /root/go && \
@@ -97,6 +103,7 @@ EXPOSE 6972
 EXPOSE 7170
 EXPOSE 7171
 EXPOSE 7172
+EXPOSE 7173
 EXPOSE 7270
 EXPOSE 7271
 EXPOSE 7371

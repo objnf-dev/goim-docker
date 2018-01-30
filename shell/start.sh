@@ -24,7 +24,9 @@ echo "Starting job"
 cd /root/soft/job
 nohup sudo ./job -c job.conf 2>&1 >> /root/logs/job.log &
 sleep 5
-# killall -9 job
+echo "Starting HTTP proxy"
+cd /root/soft/http-proxy
+nohup ./httpx-static -http 7173 -p http://127.0.0.1:7172 >> /root/logs/http-proxy.log  2>&1 &
 # echo "All Done.Now you can run \" nohup /root/start_job.sh & \" manually in your container."
 while true;
 do sleep 1;
