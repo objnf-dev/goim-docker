@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="vue.js"></script>
     <script type="text/javascript" src="wsconnect.js"></script>
 
@@ -14,7 +13,7 @@
 
 <body>
     <h1>Client Demo</h1>
-	<b>Note:This page is not for IE/Edge.</b>
+    <b>Note:This page is not for IE/Edge.</b>
     <h3>Settings:</h3>
     Server Settings:<br />
     <form id="server_setting">
@@ -22,8 +21,7 @@
         <input type="text" id="port" value="8090">
         <button type="button" onclick="start()">Connect</button>
     </form><br />
-    <b>Push command sample:</b><br />
-	$ curl -d "{\"name\":\"test\",\"msgbody\":\"1\"}" http://127.0.0.1:7172/1/push/all <br />
+    <b>Push command sample:</b><br /> $ curl -d "{\"name\":\"test\",\"msgbody\":\"1\"}" http://127.0.0.1:7172/1/push/all <br />
     <div id="s_msg">
         <h3>Messages</h3>
         <ol>
