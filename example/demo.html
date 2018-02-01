@@ -22,11 +22,18 @@
         <button type="button" onclick="start()">Connect</button>
     </form><br />
     <b>Push command sample:</b><br /> $ curl -d "{\"name\":\"test\",\"msgbody\":\"1\"}" http://127.0.0.1:7172/1/push/all <br />
+    <h3>Message Post:</h3>
+    <form>
+        Name:<input type="text" id="name_in" value="test"><br /> Message:
+        <input type="text" id="msg_in" value="1">
+        <button type="button" id="send" onclick="msg_send()">Send</button>
+    </form>
+    <!-- curl -d "{\"name\":\"test\",\"msg_body\":\"1\"}" http://127.0.0.1:7172/1/push/all -->
     <div id="s_msg">
         <h3>Messages</h3>
         <ol>
             <li v-for="ms in show">
-                <b>{{ ms.name }}:</b>{{ ms.msgbody }}
+                <b>{{ ms.name }}:</b>{{ ms.msg_body }}
             </li>
         </ol>
     </div>
