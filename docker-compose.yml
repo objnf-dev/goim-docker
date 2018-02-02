@@ -17,5 +17,5 @@ goim:
       - 8090:8090
       - 8092:8092
     volumes:
-      - config:/root/config
-      - logs:/root/logs
+      - goim_config:/root/config
+      - goim_logs:/root/logs
