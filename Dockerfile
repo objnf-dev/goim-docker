@@ -1,12 +1,17 @@
 FROM centos:latest
 ENV kafka_ver=2.12
+RUN cd /root && \
+    mkdir src && \
+    mkdir soft && \
+	mkdir shell && \
+    mkdir logs && \
+	mkdir /root/soft/example
+ADD shell /root/shell
+ADD example /root/soft/example
 RUN yum update -y && \
     yum install -y bash sudo psmisc git go wget java-1.8.0-openjdk && \
     yum clean all && \
-    cd /root && \
-    mkdir src && \
-    mkdir soft && \
-    cd src && \
+    cd /root/src && \
     git clone https://github.com/Terry-Mao/goim.git && \
     cd /root/soft && \
     wget http://www-us.apache.org/dist/kafka/1.0.0/kafka_$kafka_ver-1.0.0.tgz && \
@@ -81,17 +86,18 @@ RUN yum update -y && \
 	cd /root/soft/benchmark/push_rooms && \
 	go build main.go && \
 	rm -rf main.go && \
+	cd /root/soft/example && \
+	go build main.go && \
+	rm -rf main.go && \
     cd /root/src && \
     yum autoremove -y git go wget && \
     rm -rf /root/src && \
     rm -rf /root/go && \
-    mkdir /root/shell && \
-    mkdir /root/logs
-ADD shell /root/shell
-RUN chmod -R 777 /root/shell && \
+    chmod -R 777 /root/shell && \
     ln -s /root/shell/start.sh /root/start.sh && \
     ln -s /root/shell/stop.sh /root/stop.sh
-VOLUME ["/root/logs","/root/config"]
+VOLUME ["/root/logs","/root/config","/root/soft/example"]
+EXPOSE 1999
 EXPOSE 2181
 EXPOSE 6971
 EXPOSE 6972

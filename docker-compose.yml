@@ -1,6 +1,7 @@
 goim:
     image: zhouweitong/goim-docker:goim
     ports:
+      - 1999:1999
       - 2181:2181
       - 6971:6971
       - 6972:6972
@@ -19,3 +20,4 @@ goim:
     volumes:
       - goim_config:/root/config
       - goim_logs:/root/logs
+      - goim_example:/root/soft/example
