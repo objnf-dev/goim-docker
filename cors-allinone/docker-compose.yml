@@ -1,0 +1,23 @@
+goim-test:
+    image: daocloud.io/zhouweitong3/goim-docker:cors-test
+    ports:
+      - 1999:1999
+      - 2181:2181
+      - 6971:6971
+      - 6972:6972
+      - 7170:7170
+      - 7171:7171
+      - 7172:7172
+      - 7270:7270
+      - 7271:7271
+      - 7371:7371
+      - 7372:7372
+      - 7373:7373
+      - 7374:7374
+      - 8080:8080
+      - 8090:8090
+      - 8092:8092
+    volumes:
+      - goim_test_config:/root/config
+      - goim_test_logs:/root/logs
+      - goim_test_example:/root/soft/example

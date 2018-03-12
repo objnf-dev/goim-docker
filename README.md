@@ -1,4 +1,5 @@
-# Goim Docker Image  
+# Goim Docker Image 
+---
 A [goim](https://github.com/Terry-mao/goim) image on docker.Using CentOS as the base image.
 
 ### Usage  
@@ -30,8 +31,15 @@ $ docker run -d \
 ```   
 Or,you can use Docker Compose as well.See `docker-compose.yml`   
 
-### Port Settings:
+### Port Settings:  
 
-### Volume Settings:
-
-### Container startup failed.Here's the reason and solution:
+### Volume Settings:  
+`/root/config` contains the config files for router,logic,comet,job and client.  
+`/root/logs` contains the log files for router,logic,comet,job,zookeeper and kafka.  
+`/root/soft/example` is the folder of goim examples.  
+  
+**Container startup failed.Here's the reason and solution:**  
+The starting script of the image uses `sleep 5;` statement to keep the startup order of the programs.  
+If your computer is a bit old,for example,cannot start Apache Zookeeper in 5 seconds,will cause the container unable to use.  
+To solve the problem,simply using `$ docker run -it <the port and the image name> /bin/bash -c "while 1;do sleep 1;done`to run the container in the interactive mode,and then modify the startup script manually.  
+Then use `$ nohup /root/start.sh &` to run the goim instance.
