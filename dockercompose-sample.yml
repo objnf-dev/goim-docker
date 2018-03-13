@@ -1,0 +1,16 @@
+# The file can't be used directly.
+# You can write your file based on this,
+# or you can simply change the image link to your own.
+services:
+    goim_zookeeper:
+        image: zookeeper
+        restart: always
+        hostname: goimzoo
+        ports:
+            - 2181: 2181
+        environment:
+            ZOO_MY_ID: 1
+        volumes:
+            - zoo_config: /conf
+    goim_kafka:
+    
