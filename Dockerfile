@@ -2,6 +2,7 @@
 FROM centos:latest
 # Set environment variables.
 ENV kafka_ver=2.12
+ENV kafka_rel=1.0.1
 # Create dirs.
 RUN cd /root && \
     mkdir src && \
@@ -22,9 +23,15 @@ RUN yum update -y && \
     git clone -b master-cors https://github.com/zhouweitong3/goim.git && \
 # Download&Install Apache Kafka
     cd /root/soft && \
-    wget http://www-us.apache.org/dist/kafka/1.0.0/kafka_$kafka_ver-1.0.0.tgz && \
-    tar -xzf kafka_$kafka_ver-1.0.0.tgz && \
-    rm -rf kafka_$kafka_ver-1.0.0.tgz && \
+    wget http://www-us.apache.org/dist/kafka/$kafka_rel/kafka_$kafka_ver-$kafka_rel.tgz && \
+    tar -xzf kafka_$kafka_ver-$kafka_rel.tgz && \
+    rm -rf kafka_$kafka_ver-$kafka_rel.tgz && \
+	cd /root/soft/kafka_$kafka_ver-$kafka_rel && \
+    mkdir /root/config && \
+	mv ./config/zookeeper.properties /root/config/ && \
+	ln -s /root/config/zookeeper.properties ./config/zookeeper.properties && \
+	mv ./config/server.properties /root/config/ && \
+	ln -s /root/config/server.properties ./config/server.properties && \
 # Download the dependences.
     cd /root/src && \
     go get -u github.com/thinkboy/log4go && \
@@ -44,7 +51,6 @@ RUN yum update -y && \
     cd /root/go/src/goim/router && \
     go build && \
     mkdir /root/soft/router && \
-    mkdir /root/config && \
     \cp -rf router /root/soft/router/ && \
     \cp -rf router-example.conf /root/config/router.conf && \
     ln -s /root/config/router.conf /root/soft/router/router.conf && \
