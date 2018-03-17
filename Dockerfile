@@ -7,9 +7,9 @@ ENV kafka_rel=1.0.1
 RUN cd /root && \
     mkdir src && \
     mkdir soft && \
-	mkdir shell && \
+    mkdir shell && \
     mkdir logs && \
-	mkdir /root/soft/example
+    mkdir /root/soft/example
 # Add files
 ADD shell /root/shell
 ADD example /root/soft/example
@@ -26,12 +26,12 @@ RUN yum update -y && \
     wget http://www-us.apache.org/dist/kafka/$kafka_rel/kafka_$kafka_ver-$kafka_rel.tgz && \
     tar -xzf kafka_$kafka_ver-$kafka_rel.tgz && \
     rm -rf kafka_$kafka_ver-$kafka_rel.tgz && \
-	cd /root/soft/kafka_$kafka_ver-$kafka_rel && \
+    cd /root/soft/kafka_$kafka_ver-$kafka_rel && \
     mkdir /root/config && \
-	mv ./config/zookeeper.properties /root/config/ && \
-	ln -s /root/config/zookeeper.properties ./config/zookeeper.properties && \
-	mv ./config/server.properties /root/config/ && \
-	ln -s /root/config/server.properties ./config/server.properties && \
+    mv ./config/zookeeper.properties /root/config/ && \
+    ln -s /root/config/zookeeper.properties ./config/zookeeper.properties && \
+    mv ./config/server.properties /root/config/ && \
+    ln -s /root/config/server.properties ./config/server.properties && \
 # Download the dependences.
     cd /root/src && \
     go get -u github.com/thinkboy/log4go && \
@@ -80,38 +80,38 @@ RUN yum update -y && \
     ln -s /root/config/logic.conf /root/soft/logic/logic.conf && \
     \cp -rf logic-log.xml /root/soft/logic/logic-log.xml && \
 # Building client
-	cd /root/go/src/goim/comet/client && \
-	go build && \
-	mkdir /root/soft/client && \
-	\cp -rf client /root/soft/client/ && \
-	\cp -rf client-example.conf /root/config/client.conf && \
+    cd /root/go/src/goim/comet/client && \
+    go build && \
+    mkdir /root/soft/client && \
+    \cp -rf client /root/soft/client/ && \
+    \cp -rf client-example.conf /root/config/client.conf && \
     ln -s /root/config/client.conf /root/soft/client/client.conf && \
-	\cp -rf log.xml /root/soft/logic/log.xml && \
+    \cp -rf log.xml /root/soft/client/log.xml && \
 # Building example&benchmark
-	cd /root/go/src/goim && \
-	\cp -rf examples /root/soft && \
-	\cp -rf benchmark /root/soft && \
-	cd /root/soft/examples/javascript && \
-	go build main.go && \
-	rm -rf main.go && \
-	cd /root/soft/benchmark/client && \
-	go build main.go && \
-	rm -rf main.go && \
-	cd /root/soft/benchmark/multi_push && \
-	go build main.go && \
-	rm -rf main.go && \
-	cd /root/soft/benchmark/push && \
-	go build main.go && \
-	rm -rf main.go && \
-	cd /root/soft/benchmark/push_room && \
-	go build main.go && \
-	rm -rf main.go && \
-	cd /root/soft/benchmark/push_rooms && \
-	go build main.go && \
-	rm -rf main.go && \
-	cd /root/soft/example && \
-	go build main.go && \
-	rm -rf main.go && \
+    cd /root/go/src/goim && \
+    \cp -rf examples /root/soft && \
+    \cp -rf benchmark /root/soft && \
+    cd /root/soft/examples/javascript && \
+    go build main.go && \
+    rm -rf main.go && \
+    cd /root/soft/benchmark/client && \
+    go build main.go && \
+    rm -rf main.go && \
+    cd /root/soft/benchmark/multi_push && \
+    go build main.go && \
+    rm -rf main.go && \
+    cd /root/soft/benchmark/push && \
+    go build main.go && \
+    rm -rf main.go && \
+    cd /root/soft/benchmark/push_room && \
+    go build main.go && \
+    rm -rf main.go && \
+    cd /root/soft/benchmark/push_rooms && \
+    go build main.go && \
+    rm -rf main.go && \
+    cd /root/soft/example && \
+    go build main.go && \
+    rm -rf main.go && \
     cd /root/src && \
 # Cleaning up
     yum autoremove -y git go wget && \
