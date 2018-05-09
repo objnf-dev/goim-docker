@@ -39,6 +39,7 @@ RUN yum update -y && \
     go get -u github.com/gorilla/websocket && \
     go get -u github.com/Shopify/sarama && \
     go get -u github.com/wvanbergen/kazoo-go && \
+	go get -u github.com/nkovacs/go-socket.io && \
     \cp -rf goim /root/go/src/ && \
     mkdir /root/go/src/golang.org && \
     mkdir /root/go/src/golang.org/x && \
