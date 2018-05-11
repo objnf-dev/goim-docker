@@ -20,7 +20,7 @@ RUN yum update -y && \
     yum clean all && \
 # Clone goim
     cd /root/src && \
-    git clone https://github.com/Terry-Mao/goim.git && \
+    git clone -b zhouweitong3-patch-1 https://github.com/zhouweitong3/goim.git && \
 # Download&Install Apache Kafka
     cd /root/soft && \
     wget http://www-us.apache.org/dist/kafka/$kafka_rel/kafka_$kafka_ver-$kafka_rel.tgz && \
