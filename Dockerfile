@@ -85,31 +85,6 @@ RUN yum update -y && \
     \cp -rf client-example.conf /root/config/client.conf && \
     ln -s /root/config/client.conf /root/soft/client/client.conf && \
     \cp -rf log.xml /root/soft/client/log.xml && \
-# Building example&benchmark
-    cd /root/go/src/goim && \
-    \cp -rf benchmark /root/soft && \
-    cd /root/soft/examples/javascript && \
-    go build main.go && \
-    rm -rf main.go && \
-    cd /root/soft/benchmark/client && \
-    go build main.go && \
-    rm -rf main.go && \
-    cd /root/soft/benchmark/multi_push && \
-    go build main.go && \
-    rm -rf main.go && \
-    cd /root/soft/benchmark/push && \
-    go build main.go && \
-    rm -rf main.go && \
-    cd /root/soft/benchmark/push_room && \
-    go build main.go && \
-    rm -rf main.go && \
-    cd /root/soft/benchmark/push_rooms && \
-    go build main.go && \
-    rm -rf main.go && \
-    cd /root/soft/example && \
-    go build main.go && \
-    rm -rf main.go && \
-    cd /root/src && \
 # Cleaning up
     yum autoremove -y git go wget && \
     rm -rf /root/src && \
