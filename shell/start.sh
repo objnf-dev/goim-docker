@@ -24,7 +24,6 @@ echo "Starting job"
 cd /root/soft/job
 nohup sudo ./job -c job.conf 2>&1 >> /root/logs/job.log &
 sleep 5
-# echo "All Done.Now you can run \" nohup /root/start_job.sh & \" manually in your container."
 while true;
 do sleep 1;
 done;

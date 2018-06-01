@@ -8,11 +8,9 @@ RUN cd /root && \
     mkdir src && \
     mkdir soft && \
     mkdir shell && \
-    mkdir logs && \
-    mkdir /root/soft/example
+    mkdir logs
 # Add files
 ADD shell /root/shell
-ADD example /root/soft/example
 # Set up the environment.
 # Install tools.
 RUN yum update -y && \
@@ -20,7 +18,7 @@ RUN yum update -y && \
     yum clean all && \
 # Clone goim
     cd /root/src && \
-    git clone -b zhouweitong3-patch-1 https://github.com/zhouweitong3/goim.git && \
+    git clone https://github.com/Terry-Mao/goim.git && \
 # Download&Install Apache Kafka
     cd /root/soft && \
     wget http://www-us.apache.org/dist/kafka/$kafka_rel/kafka_$kafka_ver-$kafka_rel.tgz && \
@@ -39,7 +37,6 @@ RUN yum update -y && \
     go get -u github.com/gorilla/websocket && \
     go get -u github.com/Shopify/sarama && \
     go get -u github.com/wvanbergen/kazoo-go && \
-	go get -u github.com/nkovacs/go-socket.io && \
     \cp -rf goim /root/go/src/ && \
     mkdir /root/go/src/golang.org && \
     mkdir /root/go/src/golang.org/x && \
@@ -90,7 +87,6 @@ RUN yum update -y && \
     \cp -rf log.xml /root/soft/client/log.xml && \
 # Building example&benchmark
     cd /root/go/src/goim && \
-    \cp -rf examples /root/soft && \
     \cp -rf benchmark /root/soft && \
     cd /root/soft/examples/javascript && \
     go build main.go && \
@@ -123,7 +119,7 @@ RUN yum update -y && \
     ln -s /root/shell/start.sh /root/start.sh && \
     ln -s /root/shell/stop.sh /root/stop.sh
 # Volume settings
-VOLUME ["/root/logs","/root/config","/root/soft/example"]
+VOLUME ["/root/logs","/root/config"]
 # Port settings
 EXPOSE 1999
 EXPOSE 2181
