@@ -20,7 +20,7 @@ RUN yum update -y && \
     yum clean all && \
 # Clone goim
     cd /root/src && \
-    git clone -b master-cors https://github.com/zhouweitong3/goim.git && \
+    git clone -b master https://github.com/shinrariel/goim.git && \
 # Download&Install Apache Kafka
     cd /root/soft && \
     wget http://www-us.apache.org/dist/kafka/$kafka_rel/kafka_$kafka_ver-$kafka_rel.tgz && \
