@@ -14,12 +14,14 @@ RUN yum update -y && \
     cd /root/src && \
     git clone -b v2.0 https://github.com/Terry-Mao/goim.git && \
 # Download the dependences.
-    cd /root &&\
-    mkdir go/src &&\
+    cd /root && \
+    mkdir go && \
+	cd go && \
+	mkdir src && \
     cd /root/src && \
     \cp -rf goim /root/go/src/ && \
     cd goim && \
-    go mod tidy &&\
+    go mod tidy && \
 # Cleaning up
     yum autoremove -y git go wget
 # Volume settings
