@@ -1,49 +1,24 @@
 # Define the base image.
 FROM centos:latest
 # Set environment variables.
-ENV kafka_ver=2.12
-ENV kafka_rel=1.0.1
 # Create dirs.
 RUN cd /root && \
     mkdir src && \
     mkdir soft && \
-    mkdir shell && \
     mkdir logs
-# Add files
-ADD shell /root/shell
 # Set up the environment.
 # Install tools.
 RUN yum update -y && \
-    yum install -y bash sudo psmisc git go wget java-1.8.0-openjdk && \
+    yum install -y bash sudo psmisc git go && \
     yum clean all && \
 # Clone goim
     cd /root/src && \
-    git clone https://github.com/Terry-Mao/goim.git && \
-# Download&Install Apache Kafka
-    cd /root/soft && \
-    wget http://www-us.apache.org/dist/kafka/$kafka_rel/kafka_$kafka_ver-$kafka_rel.tgz && \
-    tar -xzf kafka_$kafka_ver-$kafka_rel.tgz && \
-    rm -rf kafka_$kafka_ver-$kafka_rel.tgz && \
-    cd /root/soft/kafka_$kafka_ver-$kafka_rel && \
-    mkdir /root/config && \
-    mv ./config/zookeeper.properties /root/config/ && \
-    ln -s /root/config/zookeeper.properties ./config/zookeeper.properties && \
-    mv ./config/server.properties /root/config/ && \
-    ln -s /root/config/server.properties ./config/server.properties && \
+    git clone -b v2.0 https://github.com/Terry-Mao/goim.git && \
 # Download the dependences.
     cd /root/src && \
-    go get -u github.com/thinkboy/log4go && \
-    go get -u github.com/Terry-Mao/goconf && \
-    go get -u github.com/gorilla/websocket && \
-    go get -u github.com/Shopify/sarama && \
-    go get -u github.com/wvanbergen/kazoo-go && \
     \cp -rf goim /root/go/src/ && \
-    mkdir /root/go/src/golang.org && \
-    mkdir /root/go/src/golang.org/x && \
-    cd /root/go/src/golang.org/x && \
-    git clone https://github.com/golang/net.git && \
-    cd /root/go/src/github.com/wvanbergen && \
-    git clone https://github.com/wvanbergen/kafka.git && \
+    cd goim && \
+    go mod tidy &&\
 # Start compiling
 # Building router
     cd /root/go/src/goim/router && \
