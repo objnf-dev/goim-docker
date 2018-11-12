@@ -4,7 +4,6 @@ FROM centos:latest
 # Create dirs.
 RUN cd /root && \
     mkdir src && \
-    mkdir soft && \
     mkdir logs
 # Set up the environment.
 # Install tools.
@@ -16,8 +15,7 @@ RUN yum update -y && \
     git clone -b v2.0 https://github.com/Terry-Mao/goim.git && \
 # Download the dependences.
     cd /root &&\
-    mkdir go &&\
-    mkdir src &&\
+    mkdir go/src &&\
     cd /root/src && \
     \cp -rf goim /root/go/src/ && \
     cd goim && \
