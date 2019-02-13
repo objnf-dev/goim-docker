@@ -1,5 +1,5 @@
 FROM centos:latest
-ENV zoo_ver=3.4.11
+ENV zoo_ver=3.4.13
 RUN yum install -y bash && \
     yum install -y git go wget make gcc && \
 	yum clean all && \
