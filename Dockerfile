@@ -37,7 +37,7 @@ RUN yum update -y && \
 # Download&Install golang
     cd /root/soft && \
     wget $golang_url && \
-    tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf $golang_name && \
     export PATH=$PATH:/usr/local/go/bin && \
     export GOPATH=$HOME/go && \
     source ~/.bash_profile && \
