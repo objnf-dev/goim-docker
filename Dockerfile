@@ -45,6 +45,9 @@ RUN yum install -y bash sudo psmisc git wget gcc gcc-c++ java-1.8.0-openjdk tcpd
     go get -u github.com/thinkboy/log4go && \
     go get -u github.com/Terry-Mao/goconf && \
     go get -u github.com/gorilla/websocket && \
+    cd /root/go/src/github.com/gorilla/websocket && \
+    git checkout 6656ddce919367f4c4090b0f89a45854d26da020 && \
+    cd /root/src && \
     go get -u github.com/Shopify/sarama && \
     go get -u github.com/wvanbergen/kazoo-go && \
     \cp -rf goim /root/go/src/ && \
