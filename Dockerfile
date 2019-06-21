@@ -26,7 +26,7 @@ RUN yum update -y && \
 # Download&Install Apache Kafka
     cd /root/soft && \
     wget http://www-us.apache.org/dist/kafka/$kafka_rel/kafka_$kafka_ver-$kafka_rel.tgz && \
-    tar -xzf kafka_$kafka_ver-$kafka_rel.tgz && \
+    tar -xzvf kafka_$kafka_ver-$kafka_rel.tgz && \
     rm -rf kafka_$kafka_ver-$kafka_rel.tgz && \
     cd /root/soft/kafka_$kafka_ver-$kafka_rel && \
     mkdir /root/config && \
@@ -37,7 +37,7 @@ RUN yum update -y && \
 # Download&Install golang
     cd /root/soft && \
     wget $golang_url && \
-    tar -C /usr/local -xzf $golang_name && \
+    tar -C /usr/local -xzvf $golang_name && \
     export PATH=$PATH:/usr/local/go/bin && \
     export GOPATH=$HOME/go && \
     source ~/.bash_profile && \
@@ -49,7 +49,6 @@ RUN yum update -y && \
     go get -u github.com/Shopify/sarama && \
     go get -u github.com/wvanbergen/kazoo-go && \
     \cp -rf goim /root/go/src/ && \
-    mkdir /root/go/src/golang.org && \
     mkdir /root/go/src/golang.org/x && \
     cd /root/go/src/golang.org/x && \
     git clone https://github.com/golang/net.git && \
