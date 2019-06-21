@@ -1,7 +1,8 @@
 # Define the base image.
 FROM centos:latest
 # Set environment variables.
-ENV kafka_ver=2.12-2.2.1    
+ENV kafka_ver=2.12
+ENV kafka_rel=2.2.1
 # Create dirs.
 RUN cd /root && \
     mkdir src && \
@@ -22,7 +23,7 @@ RUN yum update -y && \
     git clone -b master https://github.com/zhouweitong3/goim.git && \
 # Download&Install Apache Kafka
     cd /root/soft && \
-    wget http://www-us.apache.org/dist/kafka/kafka_$kafka_ver.tgz && \
+    wget http://www-us.apache.org/dist/kafka/$kafka_rel/kafka_$kafka_ver-$kafka_rel.tgz && \
     tar -xzf kafka_$kafka_ver-$kafka_rel.tgz && \
     rm -rf kafka_$kafka_ver-$kafka_rel.tgz && \
     cd /root/soft/kafka_$kafka_ver-$kafka_rel && \
