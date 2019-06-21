@@ -49,8 +49,8 @@ RUN yum update -y && \
     go get -u github.com/Shopify/sarama && \
     go get -u github.com/wvanbergen/kazoo-go && \
     \cp -rf goim /root/go/src/ && \
-    cd /root/go/src/golang.org/x && \
-    git clone https://github.com/golang/net.git && \
+    # cd /root/go/src/golang.org/x && \
+    # git clone https://github.com/golang/net.git && \
     cd /root/go/src/github.com/wvanbergen && \
     git clone https://github.com/wvanbergen/kafka.git && \
 # Start compiling
