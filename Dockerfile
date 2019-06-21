@@ -16,7 +16,7 @@ ADD example /root/soft/example
 # Set up the environment.
 # Install tools.
 RUN yum update -y && \
-    yum install -y bash sudo psmisc git go wget java-1.8.0-openjdk && \
+    yum install -y bash sudo psmisc git go golang wget java-1.8.0-openjdk && \
     yum clean all && \
 # Clone goim
     cd /root/src && \
