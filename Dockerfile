@@ -17,8 +17,7 @@ ADD shell /root/shell
 ADD example /root/soft/example
 # Set up the environment.
 # Install tools.
-RUN yum update -n && \
-    yum install -y bash sudo psmisc git wget gcc gcc-c++ java-1.8.0-openjdk tcpdump && \
+RUN yum install -y bash sudo psmisc git wget gcc gcc-c++ java-1.8.0-openjdk tcpdump && \
     yum clean all && \
 # Clone goim
     cd /root/src && \
