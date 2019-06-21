@@ -1,5 +1,5 @@
 # Define the base image.
-FROM centos:latest
+FROM centos:7.4.1708
 # Set environment variables.
 ENV kafka_rel=2.2.1
 ENV kafka_ver=2.12
@@ -17,7 +17,7 @@ ADD shell /root/shell
 ADD example /root/soft/example
 # Set up the environment.
 # Install tools.
-RUN yum update -y && \
+RUN yum update -n && \
     yum install -y bash sudo psmisc git wget gcc gcc-c++ java-1.8.0-openjdk tcpdump && \
     yum clean all && \
 # Clone goim
