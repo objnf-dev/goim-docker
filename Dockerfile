@@ -1,8 +1,8 @@
 # Define the base image.
 FROM centos:latest
 # Set environment variables.
-ENV kafka_url=http://www-us.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
-ENV kafka_name=kafka_2.12-2.2.1.tgz
+ENV kafka_rel=2.2.1
+ENV kafka_ver=2.12
 ENV golang_url=https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
 ENV golang_name=go1.12.6.linux-amd64.tar.gz
 # Create dirs.
@@ -25,10 +25,10 @@ RUN yum update -y && \
     git clone -b master https://github.com/zhouweitong3/goim.git && \
 # Download&Install Apache Kafka
     cd /root/soft && \
-    wget $kafka_url && \
-    tar -xzf $kafka_name && \
-    rm -rf $kafka_name && \
-    cd /root/soft/$kafka_name && \
+    wget http://www-us.apache.org/dist/kafka/$kafka_rel/kafka_$kafka_ver-$kafka_rel.tgz && \
+    tar -xzf kafka_$kafka_ver-$kafka_rel.tgz && \
+    rm -rf kafka_$kafka_ver-$kafka_rel.tgz && \
+    cd /root/soft/kafka_$kafka_ver-$kafka_rel && \
     mkdir /root/config && \
     mv ./config/zookeeper.properties /root/config/ && \
     ln -s /root/config/zookeeper.properties ./config/zookeeper.properties && \
